@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# 개인 포트폴리오 및 이력서 웹사이트 (v2)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+웹 환경에 최적화된 보기 편한 디자인과 PDF 저장 및 인쇄 기능을 모두 지원하는 개인 포트폴리오 및 이력서 웹사이트입니다.
 
-Currently, two official plugins are available:
+## ✨ 주요 기능
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **인쇄 최적화 레이아웃**: 웹 페이지의 내용을 A4 용지 사이즈에 맞춰 디자인하여, `window.print()` 기능을 통해 깔끔하게 PDF로 저장하거나 인쇄할 수 있습니다.
+- **실시간 콘텐츠 편집 모드 (구현 예정)**:
+    - 숨겨진 관리자 페이지를 통해 로그인 (`Ctrl` + `Alt` + `L` 단축키).
+    - 로그인 시 '편집 모드'로 전환되어 웹사이트의 모든 텍스트와 정보를 동적으로 수정.
+    - 수정된 내용은 실시간으로 화면에 반영.
+- **동적 데이터 관리 (구현 예정)**: Supabase를 백엔드로 사용하여 수정된 모든 콘텐츠를 데이터베이스에 영구적으로 저장하고 불러옵니다.
 
-## React Compiler
+## 🛠️ 기술 스택
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **프레임워크**: React (v19)
+- **언어**: TypeScript
+- **빌드 도구**: Vite
+- **스타일링**: Tailwind CSS
+- **백엔드 (예정)**: Supabase
+- **라우팅 (예정)**: React Router DOM
+- **코드 품질**: ESLint
 
-## Expanding the ESLint configuration
+## 🚀 프로젝트 실행 및 명령어
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 1. 의존성 설치
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 2. 개발 서버 실행 (http://localhost:5173)
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 3. 프로덕션 빌드
+npm run build
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 4. 코드 린트 검사
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 배포
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+이 프로젝트는 **[Vercel](https://vercel.com/)** 을 통해 배포됩니다.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Git 리포지토리를 Vercel에 연결합니다.
+- 프레임워크 프리셋으로 `Vite`를 선택합니다.
+- 빌드 및 배포 설정은 기본값을 유지합니다. (별도 설정 필요 없음)
+
+Main 브랜치에 Push가 발생하면 Vercel이 자동으로 변경사항을 감지하여 빌드 및 배포를 진행합니다.
