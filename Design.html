@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 이력서 | 김하늘</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f3f4f6; /* 배경은 살짝 회색 */
+        }
+        .paper {
+            max-width: 210mm; /* A4 width */
+            margin: 40px auto;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            min-height: 297mm;
+        }
+        /* 인쇄 시 스타일 설정 */
+        @media print {
+            body {
+                background: white;
+            }
+            .paper {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+            /* 페이지 넘김 처리 */
+            .page-break {
+                page-break-before: always;
+            }
+        }
+        .section-divider {
+            border-top: 2px solid #333;
+        }
+        .row-divider {
+            border-bottom: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 컨트롤 패널 (인쇄 버튼 등) -->
+    <div class="fixed top-4 right-4 z-50 no-print flex gap-2">
+        <button onclick="window.print()" class="bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fas fa-print"></i> PDF 저장 / 인쇄
+        </button>
+    </div>
+
+    <!-- 메인 문서 영역 (A4 사이즈) -->
+    <div class="paper pb-10">
+        
+        <!-- 1. 헤더 영역 -->
+        <header class="bg-[#333333] text-white p-10 pt-16 pb-12">
+            <div class="flex items-end gap-3">
+                <h1 class="text-4xl font-bold tracking-wide">이 력 서</h1>
+                <span class="text-xl font-light text-gray-300 pb-1">Resume</span>
+            </div>
+        </header>
+
+        <!-- 본문 컨텐츠 -->
+        <main class="px-10 py-8 space-y-12">
+
+            <!-- 2. 기본정보 (Personal Information) -->
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6">
+                <!-- 왼쪽 타이틀 -->
+                <div class="md:col-span-3">
+                    <h2 class="text-xl font-bold text-gray-800">기본정보</h2>
+                    <p class="text-sm text-gray-500 mt-1">Personal Information</p>
+                </div>
+                <!-- 오른쪽 내용 -->
+                <div class="md:col-span-9 space-y-3 text-sm md:text-base">
+                    <div class="flex flex-col sm:flex-row row-divider pb-2">
+                        <span class="w-32 font-bold text-gray-700">이름</span>
+                        <span class="text-gray-900">김 하 늘</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row row-divider pb-2">
+                        <span class="w-32 font-bold text-gray-700">생년월일</span>
+                        <span class="text-gray-900">1992. 01. 14</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row row-divider pb-2">
+                        <span class="w-32 font-bold text-gray-700">연락처</span>
+                        <span class="text-gray-900">010-1234-5678 / sky@miridih.com</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row row-divider pb-2">
+                        <span class="w-32 font-bold text-gray-700">주소</span>
+                        <span class="text-gray-900">서울특별시 구로구 구로디지털로 11</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row row-divider pb-2 border-none">
+                        <span class="w-32 font-bold text-gray-700">희망연봉</span>
+                        <span class="text-gray-900">회사 내규에 따름</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 학력사항 (Education) -->
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6">
+                <div class="md:col-span-3">
+                    <h2 class="text-xl font-bold text-gray-800">학력사항</h2>
+                    <p class="text-sm text-gray-500 mt-1">Education</p>
+                </div>
+                <div class="md:col-span-9 text-sm md:text-base">
+                    <!-- 리스트 아이템 -->
+                    <div class="flex flex-col sm:flex-row justify-between row-divider py-3">
+                        <span class="text-gray-600 sm:w-1/3">2011.03 - 2014.02</span>
+                        <span class="font-medium text-gray-800 sm:w-1/3">미리고등학교 (인문계)</span>
+                        <span class="text-gray-500 sm:w-1/3 text-right">-</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between row-divider py-3">
+                        <span class="text-gray-600 sm:w-1/3">2014.03 - 2018.02</span>
+                        <span class="font-medium text-gray-800 sm:w-1/3">미리대학교 / 경영학과</span>
+                        <span class="text-gray-500 sm:w-1/3 text-right">3.85 / 4.5</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between row-divider py-3 border-none">
+                        <span class="text-gray-600 sm:w-1/3">2018.03 - 2020.02</span>
+                        <span class="font-medium text-gray-800 sm:w-1/3">미리대학원</span>
+                        <span class="text-gray-500 sm:w-1/3 text-right">3.85 / 4.5</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 자격증 (License) -->
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6">
+                <div class="md:col-span-3">
+                    <h2 class="text-xl font-bold text-gray-800">자격증</h2>
+                    <p class="text-sm text-gray-500 mt-1">License</p>
+                </div>
+                <div class="md:col-span-9 text-sm md:text-base">
+                    <div class="flex flex-col sm:flex-row justify-between row-divider py-3">
+                        <span class="text-gray-600 sm:w-1/4">2021.08</span>
+                        <span class="font-medium text-gray-800 sm:w-2/4">컴퓨터활용능력 1급</span>
+                        <span class="text-gray-500 sm:w-1/4 text-right">대한상공회의소</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between row-divider py-3">
+                        <span class="text-gray-600 sm:w-1/4">2022.05</span>
+                        <span class="font-medium text-gray-800 sm:w-2/4">GTQ 포토샵 1급</span>
+                        <span class="text-gray-500 sm:w-1/4 text-right">한국생산성본부</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between row-divider py-3 border-none">
+                        <span class="text-gray-600 sm:w-1/4">2023.11</span>
+                        <span class="font-medium text-gray-800 sm:w-2/4">SQL 개발자(SQLD)</span>
+                        <span class="text-gray-500 sm:w-1/4 text-right">한국데이터산업진흥원</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. 경력사항 (Experience) -->
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6">
+                <div class="md:col-span-3">
+                    <h2 class="text-xl font-bold text-gray-800">경력사항</h2>
+                    <p class="text-sm text-gray-500 mt-1">Experience</p>
+                </div>
+                <div class="md:col-span-9 text-sm md:text-base space-y-6">
+                    <!-- 경력 1 -->
+                    <div class="flex flex-col sm:flex-row gap-4 row-divider pb-6">
+                        <div class="sm:w-1/4">
+                            <p class="text-gray-800 font-bold">2021.03 - 2022.02</p>
+                            <p class="text-gray-500 text-sm mt-1">1년</p>
+                        </div>
+                        <div class="sm:w-3/4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-bold text-lg">스타트업 A사</h3>
+                                <span class="text-sm bg-gray-100 px-2 py-1 rounded text-gray-600">마케팅팀 / 사원</span>
+                            </div>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm">
+                                <li>SNS 콘텐츠 기획 및 제작 (인스타그램, 블로그)</li>
+                                <li>브랜드 디자인 가이드라인 수립 보조</li>
+                                <li>퍼포먼스 마케팅 데이터 집계 및 기초 분석</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 경력 2 -->
+                    <div class="flex flex-col sm:flex-row gap-4 row-divider pb-6 border-none">
+                        <div class="sm:w-1/4">
+                            <p class="text-gray-800 font-bold">2022.03 - 현재</p>
+                            <p class="text-gray-500 text-sm mt-1">재직중</p>
+                        </div>
+                        <div class="sm:w-3/4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="font-bold text-lg">중견기업 B사</h3>
+                                <span class="text-sm bg-gray-100 px-2 py-1 rounded text-gray-600">콘텐츠팀 / 대리</span>
+                            </div>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1 text-sm">
+                                <li>신규 서비스 런칭 프로모션 디자인 총괄</li>
+                                <li>자사몰 웹사이트 UX/UI 개선 프로젝트 참여</li>
+                                <li>외주 디자인 업체 커뮤니케이션 및 일정 관리</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. 자기소개서 (Self Introduction) - 추가된 섹션 -->
+            <div class="page-break"></div> <!-- 인쇄 시 페이지 넘김 -->
+
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6 mt-8">
+                <div class="md:col-span-3">
+                    <h2 class="text-xl font-bold text-gray-800">자기소개서</h2>
+                    <p class="text-sm text-gray-500 mt-1">Self Introduction</p>
+                </div>
+                <div class="md:col-span-9 space-y-8 text-sm md:text-base leading-relaxed text-justify">
+                    
+                    <!-- 항목 1 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-gray-800 pl-3">성장 과정</h3>
+                        <p class="text-gray-700">
+                            어린 시절부터 그림 그리기와 무언가를 만드는 것을 좋아했습니다. 이러한 흥미는 자연스럽게 디자인에 대한 관심으로 이어졌고, 
+                            대학교에서 시각 디자인을 전공하며 전문적인 지식을 쌓았습니다. 특히 팀 프로젝트를 진행하며 다양한 의견을 조율하고 
+                            하나의 결과물을 만들어내는 과정에서 소통의 중요성을 깊이 깨달았습니다. 항상 새로운 트렌드에 민감하게 반응하며, 
+                            배움을 멈추지 않는 자세로 성장해왔습니다.
+                        </p>
+                    </div>
+
+                    <!-- 항목 2 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-gray-800 pl-3">성격의 장단점</h3>
+                        <p class="text-gray-700">
+                            저의 가장 큰 장점은 <strong>꼼꼼함과 책임감</strong>입니다. 맡은 일은 끝까지 책임지고 마무리하며, 
+                            작은 디테일 하나도 놓치지 않으려 노력합니다. 이러한 성격 덕분에 동료들로부터 신뢰를 얻으며 업무를 수행해왔습니다. 
+                            반면, 지나치게 신중한 탓에 결정이 늦어질 때가 있습니다. 이를 보완하기 위해 업무의 우선순위를 정하고, 
+                            데드라인을 엄격히 설정하여 효율적으로 일 처리를 하려고 노력하고 있습니다.
+                        </p>
+                    </div>
+
+                    <!-- 항목 3 -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-3 border-l-4 border-gray-800 pl-3">지원 동기 및 포부</h3>
+                        <p class="text-gray-700">
+                            귀사가 추구하는 혁신적인 가치와 디자인 철학에 깊이 공감하여 지원하게 되었습니다. 
+                            특히 최근 런칭한 서비스의 사용자 경험 중심 디자인은 저에게 큰 영감을 주었습니다. 
+                            저의 디자인 역량과 마케팅 경험을 바탕으로 귀사의 브랜드 가치를 높이는 데 기여하고 싶습니다. 
+                            입사 후에는 팀원들과 적극적으로 소통하며 시너지를 내고, 끊임없이 역량을 개발하여 
+                            대체 불가능한 인재가 되도록 최선을 다하겠습니다.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 7. 포트폴리오 (Portfolio) - 추가된 섹션 -->
+            <div class="page-break"></div> <!-- 인쇄 시 페이지 넘김 -->
+
+            <section class="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6 mt-8">
+                <div class="md:col-span-3">
+                    <h2 class="text-xl font-bold text-gray-800">포트폴리오</h2>
+                    <p class="text-sm text-gray-500 mt-1">Portfolio</p>
+                </div>
+                <div class="md:col-span-9">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        
+                        <!-- 프로젝트 1 -->
+                        <div class="group border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white">
+                            <!-- 썸네일 -->
+                            <div class="h-48 overflow-hidden bg-gray-100 relative">
+                                <img src="https://placehold.co/600x400/333333/ffffff?text=Brand+Redesign" alt="프로젝트 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <!-- 내용 -->
+                            <div class="p-5">
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">친환경 브랜드 리브랜딩</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                                    기존 브랜드의 아이덴티티를 재정립하고 로고, 패키지, 웹사이트 전반에 걸친 리뉴얼을 진행했습니다. 지속 가능한 가치를 시각화하는 데 중점을 두었습니다.
+                                </p>
+                                <div class="flex flex-wrap gap-2 text-xs">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Branding</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Adobe Illustrator</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Photoshop</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 프로젝트 2 -->
+                        <div class="group border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white">
+                            <!-- 썸네일 -->
+                            <div class="h-48 overflow-hidden bg-gray-100 relative">
+                                <img src="https://placehold.co/600x400/333333/ffffff?text=App+UI+UX" alt="프로젝트 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <!-- 내용 -->
+                            <div class="p-5">
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">금융 앱 UX/UI 개선</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                                    사용자 데이터를 분석하여 복잡한 송금 과정을 3단계로 단축시켰습니다. 직관적인 인터페이스 설계로 사용자 만족도를 20% 향상시켰습니다.
+                                </p>
+                                <div class="flex flex-wrap gap-2 text-xs">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">UI/UX</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Figma</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Prototyping</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 프로젝트 3 -->
+                        <div class="group border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white">
+                            <!-- 썸네일 -->
+                            <div class="h-48 overflow-hidden bg-gray-100 relative">
+                                <img src="https://placehold.co/600x400/333333/ffffff?text=Marketing+Kit" alt="프로젝트 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <!-- 내용 -->
+                            <div class="p-5">
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">신규 서비스 런칭 프로모션</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                                    SNS 카드뉴스, 배너 광고, 랜딩 페이지용 상세 이미지를 제작했습니다. 클릭률(CTR) 3.5%를 달성하며 성공적인 런칭을 이끌었습니다.
+                                </p>
+                                <div class="flex flex-wrap gap-2 text-xs">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Marketing Design</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Photoshop</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 프로젝트 4 -->
+                        <div class="group border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white">
+                            <!-- 썸네일 -->
+                            <div class="h-48 overflow-hidden bg-gray-100 relative">
+                                <img src="https://placehold.co/600x400/333333/ffffff?text=Data+Visualization" alt="프로젝트 썸네일" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <!-- 내용 -->
+                            <div class="p-5">
+                                <h3 class="font-bold text-lg text-gray-800 mb-2">연간 성과 보고서 디자인</h3>
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-2">
+                                    딱딱한 수치 데이터를 인포그래픽으로 시각화하여 가독성을 높였습니다. 40페이지 분량의 편집 디자인 및 인쇄 감리를 총괄했습니다.
+                                </p>
+                                <div class="flex flex-wrap gap-2 text-xs">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Editorial</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">InDesign</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded">Infographic</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- 푸터 -->
+        <footer class="mt-12 text-center text-gray-400 text-sm pb-10">
+            <p>© 2024 Kim Ha-neul. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
