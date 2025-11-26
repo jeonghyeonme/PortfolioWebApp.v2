@@ -1,6 +1,6 @@
 const SelfIntroduction = () => {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-12 gap-6 border-t-2 border-gray-700 pt-6 mt-8">
+    <section className="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6 mt-8">
       <div className="md:col-span-3">
         <h2 className="text-xl font-bold text-gray-800">자기소개서</h2>
         <p className="text-sm text-gray-500 mt-1">Self Introduction</p>

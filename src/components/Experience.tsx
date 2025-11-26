@@ -1,12 +1,13 @@
 const Experience = () => {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-12 gap-6 border-t-2 border-gray-700 pt-6">
+    <section className="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6">
       <div className="md:col-span-3">
         <h2 className="text-xl font-bold text-gray-800">경력사항</h2>
         <p className="text-sm text-gray-500 mt-1">Experience</p>
       </div>
       <div className="md:col-span-9 text-sm md:text-base space-y-6">
-        <div className="flex flex-col sm:flex-row gap-4 border-b pb-6">
+        {/* 경력 1 */}
+        <div className="flex flex-col sm:flex-row gap-4 row-divider pb-6">
           <div className="sm:w-1/4">
             <p className="text-gray-800 font-bold">2021.03 - 2022.02</p>
             <p className="text-gray-500 text-sm mt-1">1년</p>
@@ -23,6 +24,7 @@ const Experience = () => {
             </ul>
           </div>
         </div>
+        {/* 경력 2 */}
         <div className="flex flex-col sm:flex-row gap-4 pb-6">
           <div className="sm:w-1/4">
             <p className="text-gray-800 font-bold">2022.03 - 현재</p>

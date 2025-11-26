@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-gray-100 font-sans">
+    <>
       {/* 컨트롤 패널 (인쇄 버튼 등) */}
       <div className="fixed top-4 right-4 z-50 no-print flex gap-2">
         <button
@@ -21,7 +21,7 @@ function App() {
       </div>
 
       {/* 메인 문서 영역 (A4 사이즈) */}
-      <div className="paper max-w-4xl mx-auto bg-white shadow-lg my-10 pb-10">
+      <div className="paper pb-10">
         
         <Header />
 
@@ -39,7 +39,7 @@ function App() {
         
         <Footer />
       </div>
-    </div>
+    </>
   )
 }
 
