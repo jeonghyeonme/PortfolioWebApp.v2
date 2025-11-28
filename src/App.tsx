@@ -1,12 +1,5 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
-import PersonalInformation from './components/PersonalInformation';
-import Education from './components/Education';
-import License from './components/License';
-import Experience from './components/Experience';
-import SelfIntroduction from './components/SelfIntroduction';
-import Portfolio from './components/Portfolio';
-import Footer from './components/Footer';
+import { Outlet } from 'react-router-dom';
 import LoginModal from './components/LoginModal';
 import { useAuth } from './contexts/AuthContext';
 import { useToast } from './contexts/ToastContext';
@@ -62,26 +55,8 @@ function App() {
           <i className="fas fa-print"></i> PDF 저장 / 인쇄
         </button>
       </div>
-
-      {/* 메인 문서 영역 (A4 사이즈) */}
-      <div className="paper pb-10">
-        
-        <Header />
-
-        {/* 본문 컨텐츠 */}
-        <main className="px-10 py-8 space-y-12">
-          <PersonalInformation />
-          <Education />
-          <License />
-          <Experience />
-          <div className="page-break"></div>
-          <SelfIntroduction />
-          <div className="page-break"></div>
-          <Portfolio />
-        </main>
-        
-        <Footer />
-      </div>
+      
+      <Outlet />
     </>
   )
 }

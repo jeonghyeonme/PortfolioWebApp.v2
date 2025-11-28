@@ -1,4 +1,73 @@
+import { useAuth } from '../contexts/AuthContext';
+import { Editable } from './Editable';
+import { useSectionData } from '../hooks/useSectionData';
+import _ from 'lodash';
+import { useToast } from '../contexts/ToastContext';
+import { supabase } from '../supabaseClient';
+import { PlusCircle, Trash2 } from 'lucide-react';
+
+const defaultData: any[] = [];
+
 const License = () => {
+  const { isEditMode } = useAuth();
+  const { data, loading, setData } = useSectionData('license', defaultData);
+  const { addToast } = useToast();
+
+  const saveChanges = async (newData: any) => {
+    const { error } = await supabase
+      .from('sections')
+      .upsert({ id: 'license', data: newData });
+
+    if (error) {
+      addToast('저장에 실패했습니다.', 'error');
+      console.error('Error updating license:', error);
+    } else {
+      addToast('성공적으로 저장되었습니다.', 'success');
+    }
+  };
+
+  const handleUpdateItem = (itemId: string, field: string, value: string) => {
+    const newData = _.cloneDeep(data);
+    const itemIndex = newData.findIndex((item: any) => item.id === itemId);
+    if (itemIndex > -1) {
+      _.set(newData[itemIndex], field, value);
+      setData(newData);
+      saveChanges(newData);
+    }
+  };
+  
+  const handleAddItem = () => {
+    const newItem = {
+      id: crypto.randomUUID(),
+      date: 'YYYY.MM',
+      name: '자격증명',
+      issuer: '발급기관'
+    };
+    const newData = [...data, newItem];
+    setData(newData);
+    saveChanges(newData);
+  };
+
+  const handleDeleteItem = (itemId: string) => {
+    const newData = data.filter((item: any) => item.id !== itemId);
+    setData(newData);
+    saveChanges(newData);
+  }
+
+  if (loading) {
+    return <section className="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6 animate-pulse">
+      <div className="md:col-span-3 h-6 bg-gray-200 rounded w-2/3" />
+      <div className="md:col-span-9 space-y-4">
+        <div className="h-5 bg-gray-200 rounded w-full" />
+        <div className="h-5 bg-gray-200 rounded w-full" />
+      </div>
+    </section>;
+  }
+
+  if (!isEditMode && data.length === 0) {
+    return null;
+  }
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-12 gap-6 section-divider pt-6">
       <div className="md:col-span-3">
@@ -6,21 +75,31 @@ const License = () => {
         <p className="text-sm text-gray-500 mt-1">License</p>
       </div>
       <div className="md:col-span-9 text-sm md:text-base">
-        <div className="flex flex-col sm:flex-row justify-between row-divider py-3">
-          <span className="text-gray-600 sm:w-1/4">2021.08</span>
-          <span className="font-medium text-gray-800 sm:w-2/4">컴퓨터활용능력 1급</span>
-          <span className="text-gray-500 sm:w-1/4 text-right">대한상공회의소</span>
-        </div>
-        <div className="flex flex-col sm:flex-row justify-between row-divider py-3">
-          <span className="text-gray-600 sm:w-1/4">2022.05</span>
-          <span className="font-medium text-gray-800 sm:w-2/4">GTQ 포토샵 1급</span>
-          <span className="text-gray-500 sm:w-1/4 text-right">한국생산성본부</span>
-        </div>
-        <div className="flex flex-col sm:flex-row justify-between py-3">
-          <span className="text-gray-600 sm:w-1/4">2023.11</span>
-          <span className="font-medium text-gray-800 sm:w-2/4">SQL 개발자(SQLD)</span>
-          <span className="text-gray-500 sm:w-1/4 text-right">한국데이터산업진흥원</span>
-        </div>
+        {data.length > 0 ? (
+          data.map((lic: any, index: number) => (
+            <div key={lic.id} className={`flex flex-col sm:flex-row justify-between py-3 relative ${index < data.length - 1 ? 'row-divider' : ''}`}>
+              {isEditMode && <button onClick={() => handleDeleteItem(lic.id)} className="absolute top-1 right-0 text-red-500 hover:text-red-700"><Trash2 size={18}/></button>}
+              <Editable editAs='input' displayAs='span' isEditMode={isEditMode} initialValue={lic.date} onSave={(v) => handleUpdateItem(lic.id, 'date', v)} className="text-gray-600 sm:w-1/4" />
+              <Editable editAs='input' displayAs='span' isEditMode={isEditMode} initialValue={lic.name} onSave={(v) => handleUpdateItem(lic.id, 'name', v)} className="font-medium text-gray-800 sm:w-2/4" />
+              <Editable editAs='input' displayAs='span' isEditMode={isEditMode} initialValue={lic.issuer} onSave={(v) => handleUpdateItem(lic.id, 'issuer', v)} className="text-gray-500 sm:w-1/4 sm:text-right" />
+            </div>
+          ))
+        ) : (
+          isEditMode && (
+            <div className="text-center py-10 border-2 border-dashed rounded-lg">
+              <p className="text-gray-500">자격증 정보가 없습니다.</p>
+              <p className="text-gray-400 text-sm mt-1">아래 버튼을 눌러 첫 자격증을 추가해보세요.</p>
+            </div>
+          )
+        )}
+        {isEditMode && (
+          <div className="flex justify-center mt-4">
+            <button onClick={handleAddItem} className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-semibold py-2 px-4">
+              <PlusCircle size={16} />
+              자격증 추가
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

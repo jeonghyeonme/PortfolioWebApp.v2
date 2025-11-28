@@ -13,13 +13,12 @@ export const useTextData = (textId: string, defaultData: string) => {
       const { data: dbData, error } = await supabase
         .from('texts')
         .select('content')
-        .eq('id', textId)
-        .single();
+        .eq('id', textId);
 
-      if (error && error.code !== 'PGRST116') { // Ignore 'single row not found'
+      if (error) {
         console.error(`Error fetching ${textId}:`, error);
-      } else if (dbData) {
-        setData(dbData.content);
+      } else if (dbData && dbData.length > 0) {
+        setData(dbData[0].content);
       }
       setLoading(false);
     };
