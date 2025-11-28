@@ -14,13 +14,17 @@ export const useSectionData = (sectionId: string, defaultData: any) => {
       const { data: dbData, error } = await supabase
         .from('sections')
         .select('data')
-        .eq('id', sectionId)
-        .single();
+        .eq('id', sectionId);
 
-      if (error && error.code !== 'PGRST116') { // Ignore 'single row not found'
+      if (error) {
         console.error(`Error fetching ${sectionId}:`, error);
-      } else if (dbData) {
-        setData(_.merge({}, defaultData, dbData.data));
+      } else if (dbData && dbData.length > 0) {
+        const sectionData = dbData[0].data;
+        if (Array.isArray(defaultData)) {
+          setData(sectionData);
+        } else {
+          setData(_.merge({}, defaultData, sectionData));
+        }
       }
       setLoading(false);
     };
@@ -38,7 +42,13 @@ export const useSectionData = (sectionId: string, defaultData: any) => {
           filter: `id=eq.${sectionId}`,
         },
         (payload: any) => {
-          setData(_.merge({}, defaultData, payload.new.data));
+           if (payload.new?.data) {
+            if (Array.isArray(defaultData)) {
+              setData(payload.new.data);
+            } else {
+              setData(_.merge({}, defaultData, payload.new.data));
+            }
+          }
         }
       )
       .subscribe();
@@ -68,5 +78,5 @@ export const useSectionData = (sectionId: string, defaultData: any) => {
     }
   }, [data, sectionId, addToast]);
 
-  return { data, loading, handleSave };
+  return { data, loading, handleSave, setData };
 };
