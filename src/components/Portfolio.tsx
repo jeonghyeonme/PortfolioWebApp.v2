@@ -39,7 +39,6 @@ const Portfolio = () => {
   const handleAddItem = () => {
     const newItem = {
       id: crypto.randomUUID(),
-      thumbnailUrl: "https://placehold.co/600x400/cccccc/ffffff?text=New+Project",
       title: "새 프로젝트",
       summary: "프로젝트에 대한 간단한 설명입니다.",
       tags: "Tag1, Tag2",
@@ -81,7 +80,7 @@ const Portfolio = () => {
     <div className="group border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-white relative">
       {isEditMode && <button onClick={(e) => {e.preventDefault(); handleDeleteItem(item.id)}} className="absolute top-2 right-2 z-10 bg-white/70 rounded-full p-1 text-red-500 hover:text-red-700"><Trash2 size={18}/></button>}
       <div className="h-48 overflow-hidden bg-gray-100 relative">
-        <img src={item.thumbnailUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+        <img src={`${item.detail.headerImage}?t=${new Date().getTime()}`} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
       </div>
       <div className="p-5">
         <Editable editAs='input' displayAs='h3' isEditMode={isEditMode} initialValue={item.title} onSave={(v) => handleUpdateItem(item.id, 'title', v)} className="font-bold text-lg text-gray-800 mb-2" />
@@ -91,8 +90,6 @@ const Portfolio = () => {
           <div>
             <label className='text-xs font-bold'>Tags (쉼표로 구분):</label>
             <Editable editAs='input' displayAs='p' isEditMode={isEditMode} initialValue={item.tags} onSave={(v) => handleUpdateItem(item.id, 'tags', v)} className="text-xs text-gray-500" />
-            <label className='text-xs font-bold mt-2'>Thumbnail URL:</label>
-            <Editable editAs='input' displayAs='p' isEditMode={isEditMode} initialValue={item.thumbnailUrl} onSave={(v) => handleUpdateItem(item.id, 'thumbnailUrl', v)} className="text-xs text-gray-500" />
           </div>
         ) : (
           <div className="flex flex-wrap gap-2 text-xs">
