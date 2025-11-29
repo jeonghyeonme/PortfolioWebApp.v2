@@ -7,6 +7,7 @@ import { supabase } from '../supabaseClient';
 import { useToast } from '../contexts/ToastContext';
 import _ from 'lodash';
 import { ArrowLeft } from 'lucide-react';
+import { ImageUpload } from '../components/ImageUpload';
 
 const defaultPortfolioData: any[] = [];
 
@@ -55,7 +56,7 @@ const PortfolioDetailPage = () => {
        <div className="paper pb-10 animate-pulse">
         <main className="px-10 py-8">
           <div className="h-8 w-1/4 bg-gray-200 rounded mb-8"></div>
-          <div className="h-96 bg-gray-200 rounded-lg mb-8"></div>
+          <div className="h-80 bg-gray-200 rounded-lg mb-8"></div>
           <div className="space-y-6">
             <div className="h-6 w-1/3 bg-gray-200 rounded"></div>
             <div className="h-20 bg-gray-200 rounded"></div>
@@ -96,10 +97,13 @@ const PortfolioDetailPage = () => {
 
         {/* --- Header Image --- */}
         <div className="mb-8">
-          <div className="bg-gray-100 rounded-lg overflow-hidden">
-             <img src={project.detail.headerImage} alt={project.title} className="w-full h-auto object-cover"/>
-          </div>
-          {isEditMode && <div className="mt-2"><Editable editAs='input' displayAs='p' isEditMode={isEditMode} initialValue={project.detail.headerImage} onSave={(v) => handleSave('detail.headerImage', v)} className="text-sm text-gray-500 w-full" /></div>}
+          <ImageUpload
+            bucketName="portfolio-assets"
+            currentUrl={project.detail.headerImage}
+            onUploadSuccess={(newUrl) => handleSave('detail.headerImage', newUrl)}
+            aspectRatio="aspect-video"
+            objectFit="object-contain"
+          />
         </div>
 
         {/* --- Description --- */}
